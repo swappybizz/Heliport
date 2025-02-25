@@ -11,4 +11,4 @@ jobs:
     steps:
       - name: Ping the Streamlit app
         run: |
-          curl --silent --fail https://safeone.streamlit.app/ || echo "App unreachable"
+          curl --silent --fail https://safetyone.streamlit.app/ || echo "App unreachable"
