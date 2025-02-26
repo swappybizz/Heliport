@@ -80,7 +80,7 @@ else:
     else:
         if st.session_state.chosen_lang == "Norwegian":
             with st.form("topics_form"):
-                st.header("Vennligst svar på følgende obligatoriske spørsmål:")
+                st.header("Velg den eller de 2 påstandende som er mest relevant for deg")
 
                 # Question 1
                 st.write("## 1. Arbeidstillatelse (AT)")
@@ -165,7 +165,7 @@ else:
 
         else:
             with st.form("topics_form"):
-                st.header("Please answer the following mandatory questions:")
+                st.header("Please choose one or two most relevent statements for you.:")
 
                 # Question 1
                 st.write("### 1. Work permit (AT)")
