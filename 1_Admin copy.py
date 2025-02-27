@@ -18,7 +18,6 @@ codes_collection.create_index("expireAt", expireAfterSeconds=0)
 # Initialize login state if not already done
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
-
 @st.fragment(run_every="10s")   
 def get_stats():
     st.toast("Fetching latest statistics...", icon="🔄")
@@ -83,6 +82,8 @@ def get_stats():
             },
         }
 
+
+
         # Loop through each question and compute distribution of responses
         for q_key, q_data in questions.items():
             st.subheader(q_data["label"])
@@ -92,14 +93,8 @@ def get_stats():
             # Aggregate answers from all submissions
             for submission in submissions:
                 ans = submission.get("answers", {}).get(q_key)
-                if ans is not None:
-                    if isinstance(ans, list):
-                        for a in ans:
-                            if a in option_counts:
-                                option_counts[a] += 1
-                    else:
-                        if ans in option_counts:
-                            option_counts[ans] += 1
+                if ans is not None and ans in option_counts:
+                    option_counts[ans] += 1
 
             # Prepare a DataFrame for visualization
             df = pd.DataFrame({
@@ -120,6 +115,8 @@ def get_stats():
             )
 
             st.altair_chart(chart, use_container_width=True)
+
+    
 
 # Admin login in sidebar using Streamlit state
 if not st.session_state.logged_in:
@@ -185,3 +182,7 @@ with tab2:
         st.warning("Login to view statistics")
     else:
         get_stats()
+
+
+    
+    
